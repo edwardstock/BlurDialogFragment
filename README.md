@@ -1,6 +1,8 @@
 BlurDialogFragment
 ==================
 
+[![Release](https://jitpack.io/v/edwardstock/BlurDialogFragment.svg)](https://jitpack.io/#edwardstock/BlurDialogFragment)
+
 This project allows to display DialogFragment with a burring effect behind. The blurring part is achieved through FastBlur algorithm thanks to the impressive work of Pavlo Dudka (cf [Special Thanks](https://github.com/tvbarthel/BlurDialogFragment/#special-thanks-to-)).
 
 ## What difference compared to origin repo:
