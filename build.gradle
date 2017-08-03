@@ -1,12 +1,31 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+        google()
+        maven { url "https://jitpack.io" }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.0-alpha9'
+    }
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+    google()
+    maven { url "https://jitpack.io" }
+}
 apply plugin: 'com.android.library'
 
+
 android {
-    compileSdkVersion ATLAS_SDK_MAX
-    buildToolsVersion ATLAS_BUILD_TOOLS_VERSION
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
 
     defaultConfig {
-        minSdkVersion ATLAS_SDK_MIN
-        targetSdkVersion ATLAS_SDK_MAX
+        minSdkVersion 19
+        targetSdkVersion 26
         renderscriptTargetApi 20
         renderscriptSupportModeEnabled true
         versionCode 1
@@ -22,5 +41,5 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:${ATLAS_LIB_SUPPORT}"
+    implementation "com.android.support:appcompat-v7:26.0.0"
 }
