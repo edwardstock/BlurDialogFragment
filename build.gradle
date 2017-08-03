@@ -1,0 +1,26 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion ATLAS_SDK_MAX
+    buildToolsVersion ATLAS_BUILD_TOOLS_VERSION
+
+    defaultConfig {
+        minSdkVersion ATLAS_SDK_MIN
+        targetSdkVersion ATLAS_SDK_MAX
+        renderscriptTargetApi 20
+        renderscriptSupportModeEnabled true
+        versionCode 1
+        versionName "1.0.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:${ATLAS_LIB_SUPPORT}"
+}
