@@ -11,17 +11,19 @@ buildscript {
     }
 }
 
+apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.edwardstock'
+version="2.3.0"
 
-repositories {
-    jcenter()
-    mavenCentral()
-    google()
-    maven { url "https://jitpack.io" }
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+        google()
+        maven { url "https://jitpack.io" }
+    }
 }
-apply plugin: 'com.android.library'
-
 
 android {
     compileSdkVersion 26
@@ -30,10 +32,10 @@ android {
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 26
-        renderscriptTargetApi 22
+        renderscriptTargetApi 20
         renderscriptSupportModeEnabled true
         versionCode 1
-        versionName "1.0.0"
+        versionName version
     }
     buildTypes {
         release {
@@ -44,7 +46,30 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.github.jitpack:gradle-simple:1.0'
     implementation "com.android.support:appcompat-v7:26.0.0"
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    failOnError = false
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+task findConventions << {
+    println project.getConvention()
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
 }
